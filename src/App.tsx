@@ -1,4 +1,5 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { Breadcrumb } from './components/Breadcrumb';
 
 function App() {
   return (
@@ -8,26 +9,32 @@ function App() {
         lg: `"nav nav" "aside hero" "footer footer"`,
       }}
       templateColumns={{
-        base: "1fr",
-        lg: "300px 1fr",
+        base: '1fr',
+        lg: '300px 1fr',
       }}
       sx={{
-        maxWidth: "1170px",
-        width: "100%",
-        margin: "0 auto",
+        maxWidth: '1170px',
+        width: '100%',
+        margin: '0 auto',
       }}
     >
       <GridItem area="nav" bg="green" height="120px">
         Nav
       </GridItem>
-      <GridItem area="hero" bg="blue" minHeight="100vw" maxHeight="100%">
-        Hero
+      <GridItem
+        area="hero"
+        bg="blue"
+        minHeight="100vw"
+        maxHeight="100%"
+        bgColor={'#0A192F'}
+      >
+        <Breadcrumb />
       </GridItem>
       <Show above="lg">
         <GridItem
           area="aside"
           bg="gold"
-          sx={{ display: { base: "none", lg: "block" } }}
+          sx={{ display: { base: 'none', lg: 'block' } }}
         >
           Aside
         </GridItem>
