@@ -1,4 +1,5 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
+import Navbar from './components/Navbar';
 import { Breadcrumb } from './components/Breadcrumb';
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
         margin: '0 auto',
       }}
     >
-      <GridItem area="nav" bg="green" height="120px">
-        Nav
+      <GridItem area="nav" height="120px" display="flex">
+        <Navbar />
       </GridItem>
       <GridItem
         area="hero"
