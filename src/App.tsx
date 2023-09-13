@@ -20,7 +20,7 @@ function App() {
         margin: '0 auto',
       }}
     >
-      <GridItem area="nav" height="120px" display="flex">
+      <GridItem area="nav" height="120px" marginLeft="300px">
         <Navbar />
       </GridItem>
       <GridItem

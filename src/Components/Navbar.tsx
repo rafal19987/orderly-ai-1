@@ -4,11 +4,12 @@ import group2 from "../assets/group2.svg";
 import vector from "../assets/Vector.svg";
 import { HStack, Image, Text } from "@chakra-ui/react";
 import GenericButton from "./Buttons/GenericButton";
+import { navbarStyles } from "./Styles/NavbarStyles";
 
 const Navbar = () => {
   return (
     <>
-      <HStack>
+      <HStack style={navbarStyles}>
         <Image
           src={group1}
           top={12}
