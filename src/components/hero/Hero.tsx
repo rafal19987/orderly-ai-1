@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 
 import { Breadcrumb } from './Breadcrumb';
 import { CategoriesList } from './CategoriesList';
-import ProductCard from "./ProductCard.tsx";
+import { ProductCard } from '../productCard/ProductCard';
 
 export const Hero = () => {
   return (
@@ -10,7 +10,7 @@ export const Hero = () => {
       <Breadcrumb />
       <Box mt={6}>
         <CategoriesList />
-        <ProductCard/>
+        <ProductCard />
       </Box>
     </Box>
   );
