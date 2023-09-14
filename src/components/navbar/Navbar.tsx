@@ -1,15 +1,16 @@
-import React from "react";
-import group1 from "../assets/group1.svg";
-import group2 from "../assets/group2.svg";
-import vector from "../assets/Vector.svg";
-import { HStack, Image, Text } from "@chakra-ui/react";
-import GenericButton from "./Buttons/GenericButton";
-import { navbarStyles } from "./Styles/NavbarStyles";
+import group1 from "../../assets/group1.svg";
+import group2 from "../../assets/group2.svg";
+import vector from "../../assets/Vector.svg";
+import { HStack, Image, Text, Box, useBreakpointValue } from "@chakra-ui/react";
+import GenericButton from "../buttons/GenericButton";
+import { navbarStyles } from "./NavbarStyles";
 
 const Navbar = () => {
+  const isLg = useBreakpointValue({ base: false, lg: true });
   return (
     <>
       <HStack style={navbarStyles}>
+        {isLg && <Box width="300px" />}
         <Image
           src={group1}
           top={12}

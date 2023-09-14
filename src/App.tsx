@@ -1,8 +1,8 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import Footer from "./Components/footer/Footer";
+import Footer from "./components/footer/Footer";
 
-import Navbar from "./Components/Navbar";
-import { Breadcrumb } from "./Components/Breadcrumb";
+import Navbar from "./components/navbar/Navbar";
+import { Breadcrumb } from "./components/Breadcrumb";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         lg: `"nav nav" "aside hero" "footer footer"`,
       }}
       templateColumns={{
-        base: "1fr",
+        base: "100% 1fr",
         lg: "300px 1fr",
       }}
       sx={{
@@ -21,7 +21,7 @@ function App() {
         margin: "0 auto",
       }}
     >
-      <GridItem area="nav" height="120px" display="flex">
+      <GridItem area="nav">
         <Navbar />
       </GridItem>
       <GridItem
