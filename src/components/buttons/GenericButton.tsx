@@ -1,5 +1,4 @@
 import { Button, ButtonProps, Image } from "@chakra-ui/react";
-import React from "react";
 
 interface GenericButtonProps extends ButtonProps {
   size?: "small" | "medium" | "large";
