@@ -1,5 +1,8 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
+import Footer from "./Components/footer/Footer";
+
 import Navbar from "./Components/Navbar";
+import { Breadcrumb } from "./Components/Breadcrumb";
 
 function App() {
   return (
@@ -18,11 +21,17 @@ function App() {
         margin: "0 auto",
       }}
     >
-      <GridItem area="nav" height="120px" marginLeft="300px">
+      <GridItem area="nav" height="120px" display="flex">
         <Navbar />
       </GridItem>
-      <GridItem area="hero" bg="blue" minHeight="100vw" maxHeight="100%">
-        Hero
+      <GridItem
+        area="hero"
+        bg="blue"
+        minHeight="100vw"
+        maxHeight="100%"
+        bgColor={"#0A192F"}
+      >
+        <Breadcrumb />
       </GridItem>
       <Show above="lg">
         <GridItem
@@ -34,7 +43,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="footer" bg="red" height="120px">
-        Footer
+        <Footer />
       </GridItem>
     </Grid>
   );
