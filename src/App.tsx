@@ -1,10 +1,22 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  Show,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import Footer from "./components/footer/Footer";
 
 import Navbar from "./components/navbar/Navbar";
 import { Breadcrumb } from "./components/Breadcrumb";
+import { colors } from "./theme";
 
 function App() {
+  const gradientStyle = useBreakpointValue({
+    base: colors.gradientMobile,
+    md: colors.gradientDekstop,
+  });
+
   return (
     <Grid
       templateAreas={{
@@ -23,6 +35,7 @@ function App() {
     >
       <GridItem area="nav">
         <Navbar />
+        <Box style={gradientStyle} />
       </GridItem>
       <GridItem
         area="hero"

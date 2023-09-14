@@ -1,35 +1,53 @@
 import group1 from "../../assets/group1.svg";
 import group2 from "../../assets/group2.svg";
 import vector from "../../assets/Vector.svg";
-import { HStack, Image, Text, Box, useBreakpointValue } from "@chakra-ui/react";
-import GenericButton from "../buttons/GenericButton";
+import {
+  HStack,
+  Image,
+  Text,
+  Box,
+  useBreakpointValue,
+  IconButton,
+} from "@chakra-ui/react";
+import GenericButton from "../Buttons/GenericButton";
 import { navbarStyles } from "./NavbarStyles";
-
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 const Navbar = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const isLg = useBreakpointValue({ base: false, lg: true });
+
   return (
     <>
       <HStack style={navbarStyles}>
         {isLg && <Box width="300px" />}
-        <Image
-          src={group1}
-          top={12}
-          display="flex"
-          justifyContent="space-between"
-        />
+        <Image src={group1} />
         <Text color="#64ffda">Orderly AI</Text>
-        <GenericButton
-          size="large"
-          label="Generate APP with chatGPT"
-          icon={group2}
-        />
-        <GenericButton
-          size="small"
-          label="EXPORT"
-          backgroundColor="rgba(217, 217, 217, 0.15)"
-        />
-        <GenericButton size="small" label="IMPORT" />
-        <Text color="#64ffda">LOG IN</Text>
+        {isLg ? (
+          <>
+            <GenericButton
+              size="large"
+              label="Generate APP with chatGPT"
+              icon={group2}
+            />
+            <GenericButton
+              size="small"
+              label="EXPORT"
+              backgroundColor="rgba(217, 217, 217, 0.15)"
+            />
+            <GenericButton size="small" label="IMPORT" />
+            <Text color="#64ffda" as="button">
+              LOG IN
+            </Text>
+          </>
+        ) : (
+          <IconButton
+            aria-label="Toggle Navigation"
+            icon={isNavOpen ? <CloseIcon /> : <HamburgerIcon />}
+            onClick={() => setIsNavOpen((prev) => !prev)}
+            color="#64ffda"
+          />
+        )}
       </HStack>
     </>
   );

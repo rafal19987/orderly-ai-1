@@ -1,28 +1,41 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
-const colors = {
-  black: '#000',
-  white: '#fff',
+export const colors = {
+  black: "#000",
+  white: "#fff",
   bg: {
-    primary: '#0A192F',
-    secondary: '#112240',
+    primary: "#0A192F",
+    secondary: "#112240",
   },
   text: {
-    primary: '#64FFDA',
-    secondary: '#CCD6F6',
+    primary: "#64FFDA",
+    secondary: "#CCD6F6",
   },
-  linksText: '#5E5CBF',
+  linksText: "#5E5CBF",
+  gradientMobile: {
+    background:
+      "linear-gradient(90deg, rgba(133, 79, 79, 0)  , rgba(100, 255, 218, 1), rgba(133, 79, 79, 0))",
+    height: "2px",
+    width: "100%",
+  },
+  gradientDekstop: {
+    background:
+      "linear-gradient(90deg, rgba(133, 79, 79, 0)  , rgba(100, 255, 218, 1), rgba(133, 79, 79, 0))",
+    height: "2px",
+    width: "80%",
+    marginLeft: "20%",
+  },
 };
 
 export const theme = extendTheme({
   fonts: {
-    body: 'Inter, sans-serif',
+    body: "Inter, sans-serif",
   },
   styles: {
     global: {
-      'html, body': {
-        overflowX: 'hidden',
-        color: 'blue.800',
+      "html, body": {
+        overflowX: "hidden",
+        color: "blue.800",
       },
     },
   },
