@@ -4,6 +4,5 @@ export const navbarStyles = {
   alignItems: "center",
   justifyContent: "space-between",
   padding: "10px 20px",
-
   border: "1px solid red",
 };

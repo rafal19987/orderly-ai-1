@@ -1,7 +1,7 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import Footer from './components/footer/Footer';
-import Navbar from './components/Navbar';
-import { Hero } from './components/hero/Hero';
+import Navbar from './components/navbar/Navbar';
+import { Hero } from './Components/hero/Hero';
 
 function App() {
   return (
