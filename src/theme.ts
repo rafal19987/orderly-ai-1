@@ -10,6 +10,7 @@ const colors = {
   text: {
     primary: '#64FFDA',
     secondary: '#CCD6F6',
+    dark: '#112240',
   },
   linksText: '#5E5CBF',
 };
