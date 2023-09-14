@@ -5,11 +5,11 @@ const Footer = () => {
 	const currentYear = currentDate.getFullYear(); 
 
 	return (
-		<Box>
+		<Box as="footer">
 			<Flex
 				height='120px'
-				bg='#0A192F'
-				color='#CCD6F6'
+				bg='bg.primary'
+				color='text.secondary'
 				align='center'
 				justify='center'>
 				<Text>© This is the POC for the best app of the world !! | {currentYear}</Text>
