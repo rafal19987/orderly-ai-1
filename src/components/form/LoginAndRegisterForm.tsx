@@ -41,7 +41,7 @@ export const Form = () => {
       setShowConfirmPassword(false);
     }
     setValidationError(null);
-    setFormSubmitted(null);
+    setFormSubmitted(false);
 
     setFormData({
       username: '',
