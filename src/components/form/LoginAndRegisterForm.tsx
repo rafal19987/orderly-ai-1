@@ -41,6 +41,7 @@ export const Form = () => {
       setShowConfirmPassword(false);
     }
     setValidationError(null);
+    setFormSubmitted(null);
 
     setFormData({
       username: '',
@@ -98,39 +99,53 @@ export const Form = () => {
     }
   };
 
-  const sendData = async (isLogin: boolean, username: string, password: string) => {
+  const sendData = async (
+    isLogin: boolean,
+    username: string,
+    password: string,
+  ) => {
     if (isLogin) {
       sessionStorage.removeItem('token');
-      await signIn(username, password).then((res) => {
-        if (res.data.length > 0) {
-          sessionStorage.setItem('token', JSON.stringify({isLogged: true, username: res.data[0].username, role: res.data[0].role}));
-          console.log('OK');
-          toast.success(`Hi, ${res.data[0].username}!`)
-          //navigate?
-        } else {
-          console.log('User does not exist!');
-          toast.error('User does not exist!');
-        }
-      }).catch((err) => {
-        throw new Error(err.message);
-      });
+      await signIn(username, password)
+        .then((res) => {
+          if (res.data.length > 0) {
+            sessionStorage.setItem(
+              'token',
+              JSON.stringify({
+                isLogged: true,
+                username: res.data[0].username,
+                role: res.data[0].role,
+              }),
+            );
+            console.log('OK');
+            toast.success(`Hi, ${res.data[0].username}!`);
+            //navigate?
+          } else {
+            console.log('User does not exist!');
+            toast.error('User does not exist!');
+          }
+        })
+        .catch((err) => {
+          throw new Error(err.message);
+        });
     } else {
       const newUser: TUser = {
         username: username,
         password: password,
         role: 'regular',
       };
-      await signUp(newUser).then((res) => {
-        console.log(res);
-        if (res.status === 201) {
-          toast.success("Registration was successful!");
-        }
-        else{
-          toast.error("An error occurred during registration!");
-        }
-      }).catch((err) => {
-        throw new Error(err.message);
-      });
+      await signUp(newUser)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 201) {
+            toast.success('Registration was successful!');
+          } else {
+            toast.error('An error occurred during registration!');
+          }
+        })
+        .catch((err) => {
+          throw new Error(err.message);
+        });
     }
   };
 
