@@ -53,7 +53,9 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </GridItem>
       <Show above='lg'>
         <GridItem area='aside' sx={{ display: { base: 'none', lg: 'block' } }}>
-          <AdminPanel />
+          <Box bg='bg.secondary'>
+            <AdminPanel />
+          </Box>
         </GridItem>
       </Show>
       <GridItem area='footer' height='120px'>

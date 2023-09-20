@@ -21,11 +21,11 @@ const AdminPanel = () => {
 
   return (
     <div>
-      <Box>
-        <Link to={''}>Create New Category:</Link>
+      <Box color='white'>
+        <Link to={''}>Create New Category</Link>
       </Box>
 
-      <Box>
+      <Box color='white'>
         <Link to={''}>Edit categories</Link>
       </Box>
 
@@ -35,14 +35,14 @@ const AdminPanel = () => {
             <AccordionItem>
               <h2>
                 <AccordionButton>
-                  <Box as='span' flex='1' textAlign='left'>
+                  <Box color='white' as='span' flex='1' textAlign='left'>
                     {category.categoryName}
                   </Box>
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
               <AccordionPanel pb={4}>
-                <VStack align='stretch'>
+                <VStack color='white' align='stretch'>
                   {data.products
                     .filter(
                       (product) => product.category === category.categoryName,
