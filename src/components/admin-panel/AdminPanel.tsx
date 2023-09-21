@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { RootState } from '../../redux/store';
@@ -13,10 +14,16 @@ import {
 import { adminPanelStyles } from './AdminPanelStyles';
 
 const AdminPanel = () => {
+  const isAdminPanelOpen = useAppSelector(
+    (state) => state.adminPanel.isAdminPanelOpen,
+  );
+
   const data = useSelector((state: RootState) => ({
     categories: state.categories,
     products: state.products,
   }));
+
+  if (!isAdminPanelOpen) return null;
 
   return (
     <div>
