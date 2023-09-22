@@ -17,6 +17,7 @@ import { getAllUsers, removeUser, updateUser } from '@util/api-calls.ts';
 import { TUser } from '@/types/user.ts';
 import { Flex } from '@chakra-ui/layout';
 import toast from 'react-hot-toast';
+import { DeleteIcon } from '@chakra-ui/icons';
 
 const AdminPanel = () => {
   const isAdminPanelOpen = useAppSelector(
@@ -48,20 +49,29 @@ const AdminPanel = () => {
     });
   };
 
-  const removeData = async (userId: number) => {
-    await removeUser(userId).then((res) => {
-      console.log(res.data);
-      setTimeout(() => {
-        navigate('/');
-        window.location.reload();
-      }, 500);
-      toast.success('User updated successfully!');
-    }).catch((err) => {
-      throw new Error(err);
-    });
+  const removeData = async (userId: number | undefined) => {
+    if (userId) {
+      const response = confirm('Are you sure you want to remove this user?');
+
+      if (response) {
+        await removeUser(userId).then((res) => {
+          console.log(res.data);
+          setTimeout(() => {
+            navigate('/');
+            window.location.reload();
+          }, 1000);
+          toast.success('User removed successfully!');
+        }).catch((err) => {
+          throw new Error(err);
+        });
+      }
+    }
+    else{
+      alert("Something went wrong...");
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLOptionElement>, userId: number | undefined) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, userId: number | undefined) => {
     if (userId) {
       updateData(userId, e.target.value);
     }
@@ -119,12 +129,14 @@ const AdminPanel = () => {
           </Accordion>
         ))}
       </ul>
-      <h2 style={{margin: "5% 5% 0 5%", color: "#64FFDA"}}>Users</h2>
+      <h2 style={{ margin: '5% 5% 0 5%', color: '#64FFDA' }}>Users</h2>
       {userData?.map((user) => (
-        <Flex key={user.id} marginY='5px' paddingX='5%' paddingY="5px" justifyContent='space-between' alignItems="center" >
-          <Box color={'white'}>
-            <h2 color={'white'}>{user.username}</h2>
-          </Box>
+        <Flex key={user.id} marginY='5px' paddingX='5%' paddingY='5px' justifyContent='space-between'
+              alignItems='center'>
+          <Flex color={'white'} gap='10px'>
+            <DeleteIcon onClick={() => removeData(user.id)} />
+            <h2>{user.username}</h2>
+          </Flex>
           <Box>
             <Select placeholder='Select role' color={'white'} onChange={(e) => handleChange(e, user.id)}>
               {user.role === 'admin' ? (
