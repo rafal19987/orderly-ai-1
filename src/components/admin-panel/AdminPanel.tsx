@@ -9,21 +9,36 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import { adminPanelStyles } from './AdminPanelStyles';
+import { useEffect, useState } from 'react';
+import { getAllUsers } from '@util/api-calls.ts';
+import { TUser } from '@/types/user.ts';
 
 const AdminPanel = () => {
   const isAdminPanelOpen = useAppSelector(
-    (state) => state.adminPanel.isAdminPanelOpen,
+    (state) => state.adminPanel.isAdminPanelOpen
   );
 
   const data = useSelector((state: RootState) => ({
     categories: state.categories,
-    products: state.products,
+    products: state.products
   }));
 
+  const [userData, setUserData] = useState<TUser[]>();
+
   if (!isAdminPanelOpen) return null;
+
+  const loadData = async () => {
+    await getAllUsers().then((res) => setUserData(res.data)).catch((err) => {
+      throw new Error(err);
+    });
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   return (
     <div>
@@ -56,7 +71,7 @@ const AdminPanel = () => {
                 <VStack color='white' align='stretch'>
                   {data.products
                     .filter(
-                      (product) => product.category === category.categoryName,
+                      (product) => product.category === category.categoryName
                     )
                     .map((product) => (
                       <Box key={product.id}>
@@ -70,6 +85,9 @@ const AdminPanel = () => {
             </AccordionItem>
           </Accordion>
         ))}
+      </ul>
+      <ul>
+
       </ul>
     </div>
   );
