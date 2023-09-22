@@ -29,6 +29,12 @@ const AdminPanel = () => {
   }));
   const [userData, setUserData] = useState<TUser[]>();
   const navigate = useNavigate();
+  const token: string | null = sessionStorage.getItem('token');
+  let userId: number | null;
+
+  if (token) {
+    userId = JSON.parse(token).userId;
+  }
 
   const loadData = async () => {
     await getAllUsers().then((res) => setUserData(res.data)).catch((err) => {
@@ -65,9 +71,8 @@ const AdminPanel = () => {
           throw new Error(err);
         });
       }
-    }
-    else{
-      alert("Something went wrong...");
+    } else {
+      alert('Something went wrong...');
     }
   };
 
@@ -129,8 +134,9 @@ const AdminPanel = () => {
           </Accordion>
         ))}
       </ul>
+
       <h2 style={{ margin: '5% 5% 0 5%', color: '#64FFDA' }}>Users</h2>
-      {userData?.map((user) => (
+      {userData?.filter((user) => user.id !== userId).map((user) => (
         <Flex key={user.id} marginY='5px' paddingX='5%' paddingY='5px' justifyContent='space-between'
               alignItems='center'>
           <Flex color={'white'} gap='10px'>
@@ -153,9 +159,8 @@ const AdminPanel = () => {
             </Select>
           </Box>
         </Flex>
-      ))}
+      ))};
     </div>
   );
 };
-
 export default AdminPanel;
