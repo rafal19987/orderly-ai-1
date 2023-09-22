@@ -19,11 +19,9 @@ export const getAllUsers = () => {
   return axios.get(API_URL + 'users');
 };
 
-export const updateUser = (userId: number, newRole: 'string') => {
-  return axios.put(API_URL + 'users/' + userId, {
-    data: {
-      role: newRole
-    }
+export const updateUser = (userId: number, newRole: string) => {
+  return axios.patch(API_URL + 'users/' + userId, {
+    role: newRole
   });
 };
 

@@ -9,12 +9,13 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  VStack
+  VStack, Menu, MenuButton, MenuList, MenuItem, MenuItemOption, Select
 } from '@chakra-ui/react';
 import { adminPanelStyles } from './AdminPanelStyles';
-import { useEffect, useState } from 'react';
-import { getAllUsers } from '@util/api-calls.ts';
+import React, { useEffect, useState } from 'react';
+import { getAllUsers, updateUser } from '@util/api-calls.ts';
 import { TUser } from '@/types/user.ts';
+import { Flex } from '@chakra-ui/layout';
 
 const AdminPanel = () => {
   const isAdminPanelOpen = useAppSelector(
@@ -28,17 +29,33 @@ const AdminPanel = () => {
 
   const [userData, setUserData] = useState<TUser[]>();
 
-  if (!isAdminPanelOpen) return null;
-
   const loadData = async () => {
     await getAllUsers().then((res) => setUserData(res.data)).catch((err) => {
       throw new Error(err);
     });
   };
 
+  const updateData = async (userId: number, role: string) => {
+    await updateUser(userId, role).then((res) => {
+      console.log('updated!');
+      console.log(res.data);
+
+    });
+  };
+
+  const handleChange = (e: any, userId: number) => {
+    console.log(e.target.value);
+    console.log(userId);
+    // if (e.target.value !== '') {
+    //   updateData(userId, e.target.value);
+    // }
+  };
+
   useEffect(() => {
     loadData();
   }, []);
+
+  if (!isAdminPanelOpen) return null;
 
   return (
     <div>
@@ -86,9 +103,29 @@ const AdminPanel = () => {
           </Accordion>
         ))}
       </ul>
-      <ul>
-
-      </ul>
+      <h2>Users</h2>
+      {userData?.map((user) => (
+        <Flex key={user.id} justifyContent='space-between' paddingX={'5%'}>
+          <Box color={'white'}>
+            <h2 color={'white'}>{user.username}</h2>
+          </Box>
+          <Box>
+            <Select placeholder='Select role' color={'white'} onChange={(e) => handleChange(e, user.id)}>
+              {user.role === 'admin' ? (
+                <>
+                  <option value='admin' disabled>admin</option>
+                  <option value='regular'>regular</option>
+                </>
+              ) : (
+                <>
+                  <option value='admin'>admin</option>
+                  <option value='regular' disabled>regular</option>
+                </>
+              )}
+            </Select>
+          </Box>
+        </Flex>
+      ))}
     </div>
   );
 };
