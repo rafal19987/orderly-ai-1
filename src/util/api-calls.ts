@@ -25,3 +25,11 @@ export const updateUser = (userId: number, newRole: string) => {
   });
 };
 
+export const removeUser = (userId: number) => {
+  return axios.delete(API_URL + 'users', {
+    params: {
+      id: userId
+    }
+  });
+};
+

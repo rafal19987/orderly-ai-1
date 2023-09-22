@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import {
   Accordion,
@@ -9,25 +9,25 @@ import {
   AccordionPanel,
   AccordionIcon,
   Box,
-  VStack, Menu, MenuButton, MenuList, MenuItem, MenuItemOption, Select
+  VStack, Select
 } from '@chakra-ui/react';
 import { adminPanelStyles } from './AdminPanelStyles';
 import React, { useEffect, useState } from 'react';
-import { getAllUsers, updateUser } from '@util/api-calls.ts';
+import { getAllUsers, removeUser, updateUser } from '@util/api-calls.ts';
 import { TUser } from '@/types/user.ts';
 import { Flex } from '@chakra-ui/layout';
+import toast from 'react-hot-toast';
 
 const AdminPanel = () => {
   const isAdminPanelOpen = useAppSelector(
     (state) => state.adminPanel.isAdminPanelOpen
   );
-
   const data = useSelector((state: RootState) => ({
     categories: state.categories,
     products: state.products
   }));
-
   const [userData, setUserData] = useState<TUser[]>();
+  const navigate = useNavigate();
 
   const loadData = async () => {
     await getAllUsers().then((res) => setUserData(res.data)).catch((err) => {
@@ -37,18 +37,34 @@ const AdminPanel = () => {
 
   const updateData = async (userId: number, role: string) => {
     await updateUser(userId, role).then((res) => {
-      console.log('updated!');
       console.log(res.data);
-
+      setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 500);
+      toast.success('User updated successfully!');
+    }).catch((err) => {
+      throw new Error(err);
     });
   };
 
-  const handleChange = (e: any, userId: number) => {
-    console.log(e.target.value);
-    console.log(userId);
-    // if (e.target.value !== '') {
-    //   updateData(userId, e.target.value);
-    // }
+  const removeData = async (userId: number) => {
+    await removeUser(userId).then((res) => {
+      console.log(res.data);
+      setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 500);
+      toast.success('User updated successfully!');
+    }).catch((err) => {
+      throw new Error(err);
+    });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLOptionElement>, userId: number | undefined) => {
+    if (userId) {
+      updateData(userId, e.target.value);
+    }
   };
 
   useEffect(() => {
@@ -103,9 +119,9 @@ const AdminPanel = () => {
           </Accordion>
         ))}
       </ul>
-      <h2>Users</h2>
+      <h2 style={{margin: "5% 5% 0 5%", color: "#64FFDA"}}>Users</h2>
       {userData?.map((user) => (
-        <Flex key={user.id} justifyContent='space-between' paddingX={'5%'}>
+        <Flex key={user.id} marginY='5px' paddingX='5%' paddingY="5px" justifyContent='space-between' alignItems="center" >
           <Box color={'white'}>
             <h2 color={'white'}>{user.username}</h2>
           </Box>
