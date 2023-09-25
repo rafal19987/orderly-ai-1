@@ -28,6 +28,8 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const exportDialog = useDisclosure();
 
+  const isTokenAvailable = token != null;
+
   return (
     <>
       <HStack style={navbarStyles}>
@@ -47,22 +49,20 @@ const Navbar = () => {
                 icon={group2}
               />
             )}
-            <GenericButton
-              size='small'
-              label='EXPORT'
-              backgroundColor='rgba(217, 217, 217, 0.15)'
-              onClick={exportDialog.onOpen}
-            />
-            <FileExportAlert
-              isOpen={exportDialog.isOpen}
-              onClose={exportDialog.onClose}
-            />
-
-            <GenericButton size='small' label='IMPORT' onClick={onOpen} />
+            {isTokenAvailable && (
+              <GenericButton
+                size='small'
+                label='EXPORT'
+                backgroundColor='rgba(217, 217, 217, 0.15)'
+              />
+            )}
+            {isTokenAvailable && (
+              <GenericButton size='small' label='IMPORT' onClick={onOpen} />
+            )}
             <FileImportModal isOpen={isOpen} onClose={onClose} />
 
             {token != null ? (
-              <DropdownMenu />
+              <DropdownMenu onClose={onClose} />
             ) : (
               <Text color='#64ffda' as={Link} to='/auth'>
                 LOG IN
