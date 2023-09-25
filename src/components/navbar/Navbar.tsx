@@ -9,7 +9,7 @@ import {
   Box,
   useBreakpointValue,
   IconButton,
-  useDisclosure
+  useDisclosure,
 } from '@chakra-ui/react';
 import GenericButton from '@buttons/GenericButton';
 import { navbarStyles } from './NavbarStyles';
@@ -32,7 +32,7 @@ const Navbar = () => {
     <>
       <HStack style={navbarStyles}>
         {isLg && <Box width='300px' />}
-        <Image src={group1} />
+        <Image src={group1} alt='OrderlyAI app logo' />
         <Link to='/' style={{ textDecoration: 'none' }}>
           <Text color='#64ffda' fontSize='xl'>
             Orderly AI
@@ -53,7 +53,10 @@ const Navbar = () => {
               backgroundColor='rgba(217, 217, 217, 0.15)'
               onClick={exportDialog.onOpen}
             />
-            <FileExportAlert isOpen={exportDialog.isOpen} onClose={exportDialog.onClose}/>
+            <FileExportAlert
+              isOpen={exportDialog.isOpen}
+              onClose={exportDialog.onClose}
+            />
 
             <GenericButton size='small' label='IMPORT' onClick={onOpen} />
             <FileImportModal isOpen={isOpen} onClose={onClose} />
