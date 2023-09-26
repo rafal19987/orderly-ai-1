@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/redux/hooks';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RootState } from '../../redux/store';
 import {
   Accordion,
@@ -23,18 +23,18 @@ import toast from 'react-hot-toast';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 const AdminPanel = () => {
-  const isAdminPanelOpen = useAppSelector(
-    (state) => state.adminPanel.isAdminPanelOpen,
-  );
-  const data = useSelector((state: RootState) => ({
-    categories: state.categories,
-    products: state.products,
-  }));
-  const [userData, setUserData] = useState<TUser[]>();
-  const navigate = useNavigate();
-  const { onToggle } = useDisclosure();
-  const token: string | null = sessionStorage.getItem('token');
-  let userId: number | null;
+    const isAdminPanelOpen = useAppSelector(
+      (state) => state.adminPanel.isAdminPanelOpen
+    );
+    const data = useSelector((state: RootState) => ({
+      categories: state.categories,
+      products: state.products
+    }));
+    const [userData, setUserData] = useState<TUser[]>();
+    const [rerender, setRerender] = useState(false);
+    const { onToggle } = useDisclosure();
+    const token: string | null = sessionStorage.getItem('token');
+    let userId: number | null;
 
   if (token) {
     userId = JSON.parse(token).userId;
@@ -52,10 +52,7 @@ const AdminPanel = () => {
     await updateUser(userId, role)
       .then((res) => {
         console.log(res.data);
-        setTimeout(() => {
-          navigate('/');
-          window.location.reload();
-        }, 500);
+        setRerender(!rerender);
         toast.success('User updated successfully!');
       })
       .catch((err) => {
@@ -71,20 +68,30 @@ const AdminPanel = () => {
         await removeUser(userId)
           .then((res) => {
             console.log(res.data);
-            setTimeout(() => {
-              navigate('/');
-              window.location.reload();
-            }, 1000);
+            setRerender(!rerender);
             toast.success('User removed successfully!');
           })
           .catch((err) => {
             throw new Error(err);
           });
       }
-    } else {
+      } else {
       alert('Something went wrong...');
     }
-  };
+
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>, userId: number | undefined) => {
+      if (userId) {
+        updateData(userId, e.target.value);
+      }
+    };
+
+    useEffect(() => {
+      loadData();
+    }, [rerender]);
+
+    if (!isAdminPanelOpen) return null;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLSelectElement>,
