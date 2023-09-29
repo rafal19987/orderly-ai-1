@@ -4,10 +4,16 @@ import { Navbar } from '@/components/navbar/Navbar';
 import { Breadcrumb } from '@/components/hero/Breadcrumb';
 import { AdminPanel } from '@/components/admin-panel/AdminPanel';
 import { Footer } from '@/components/footer/Footer';
+import { LoadingSpinner } from '@components/shared/LoadingSpinner.tsx';
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const isAdminPanelOpen = useAppSelector(
     (state) => state.adminPanel.isAdminPanelOpen,
+  );
+  const isSwitchActive = useAppSelector((state) => state.gpt.isSwitchActive);
+
+  const isWaitingForResponse = useAppSelector(
+    (state) => state.gpt.isWaitingForResponse,
   );
 
   return (
@@ -28,8 +34,16 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
           <AdminPanel />
           <MainContentWrapper>
             <Breadcrumb />
-            <Box mt={isAdminPanelOpen ? 10 : 24} overflowY='auto'>
-              {children}
+            <Box
+              mt={isAdminPanelOpen ? 10 : 24}
+              overflowY='auto'
+              minHeight='80%'
+            >
+              {isWaitingForResponse && isSwitchActive ? (
+                <LoadingSpinner />
+              ) : (
+                children
+              )}
             </Box>
           </MainContentWrapper>
         </Flex>
