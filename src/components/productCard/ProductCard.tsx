@@ -14,6 +14,7 @@ import {
 
 import notFoundProductInfoIcon from '@assets/not-found-product-info.svg';
 import notFoundVideoIcon from '@assets/not-found-video-icon.svg';
+import playBtnIcon from '@assets/play-btn.svg';
 
 const MAX_DESCRIPTION_LENGTH = 50;
 
@@ -32,9 +33,6 @@ export const ProductCard = () => {
         Product not found
       </Text>
     );
-
-  const arr: string[] | undefined = details.videoURL?.split(' ');
-  const video: string | undefined = arr && arr[3].split('"')[1];
 
   return (
     <Flex
@@ -58,15 +56,7 @@ export const ProductCard = () => {
         borderBottomRadius={{ base: 'none', md: '2xl' }}
       >
         {details.videoURL ? (
-          <iframe
-            width='560'
-            height='315'
-            src={`${video && video}`}
-            title='YouTube video player'
-            frameBorder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-            allowFullScreen
-          ></iframe>
+          <RenderPlayButtonIcon />
         ) : (
           <RenderNotFoundVideoIcon />
         )}
@@ -174,6 +164,10 @@ const RenderNotFoundValueIcon = () => {
   return (
     <Image src={notFoundProductInfoIcon} alt='not found product info icon' />
   );
+};
+
+const RenderPlayButtonIcon = () => {
+  return <Image src={playBtnIcon} alt='Play btn icon' />;
 };
 
 const RenderNotFoundVideoIcon = () => {
