@@ -12,9 +12,9 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 
-import playBtnIcon from '@assets/play-btn.svg';
 import notFoundProductInfoIcon from '@assets/not-found-product-info.svg';
 import notFoundVideoIcon from '@assets/not-found-video-icon.svg';
+import playBtnIcon from '@assets/play-btn.svg';
 
 const MAX_DESCRIPTION_LENGTH = 50;
 
@@ -55,7 +55,7 @@ export const ProductCard = () => {
         borderTopRadius='2xl'
         borderBottomRadius={{ base: 'none', md: '2xl' }}
       >
-        {details.websiteURL ? (
+        {details.videoURL ? (
           <RenderPlayButtonIcon />
         ) : (
           <RenderNotFoundVideoIcon />
@@ -102,9 +102,13 @@ const ProductInfo = ({
       >
         {label}:
       </Text>
-      <Box as={GridItem} colSpan={isFull ? 2 : 1}>
+      <Box as={GridItem} colSpan={isFull ? 2 : 1} color='text.secondary'>
         {value ? (
-          <RenderValue value={value} showTooltip={isFull} />
+          value.includes('http') ? (
+            <a href={value}>{value}</a>
+          ) : (
+            <RenderValue value={value} showTooltip={isFull} />
+          )
         ) : (
           <RenderNotFoundValueIcon />
         )}

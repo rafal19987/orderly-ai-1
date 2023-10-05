@@ -3,17 +3,23 @@ import ProductDetailRadio from './ProductDetailRadio';
 import { FormControl, FormLabel } from '@chakra-ui/form-control';
 import { Input } from '@chakra-ui/input';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { Navigate } from 'react-router-dom';
 import { Select } from '@chakra-ui/select';
 import { Button } from '@chakra-ui/button';
 import React, { useState } from 'react';
 import { addProduct } from '@/redux/features/products/productsSlice';
 import toast from 'react-hot-toast';
 import { formLabelStyles, inputStyles } from './addnewProductStyle';
+import { v4 as uuidv4 } from 'uuid';
 
 export const AddNewProduct = () => {
   const categories = useAppSelector((state) => state.categories);
   const products = useAppSelector((state) => state.products);
   const appDis = useAppDispatch();
+
+  const isUserLoggedIn = useAppSelector((state) => state.user.isUserLoggedIn);
+  const token = sessionStorage.getItem('token');
+  const isRegular = token && JSON.parse(token).role === 'regular';
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [productName, setProductName] = useState('');
@@ -22,17 +28,9 @@ export const AddNewProduct = () => {
   const [paid, setPaid] = useState('');
   const [productDescription, setProductDescription] = useState('');
 
-  const [lastProductId, setLastProductId] = useState<number>(30);
-
-  const generateProductId = () => {
-    const newId = lastProductId + 1;
-    setLastProductId(newId);
-    return newId;
-  };
-
   const addNewProduct = () => {
     const isProductExist = products.some(
-      (product) => product.name === productName
+      (product) => product.name === productName,
     );
 
     if (isProductExist) {
@@ -40,7 +38,7 @@ export const AddNewProduct = () => {
       return;
     }
 
-    const newId = generateProductId();
+    const newId = uuidv4();
     appDis(
       addProduct({
         id: newId,
@@ -49,8 +47,8 @@ export const AddNewProduct = () => {
         websiteURL: website,
         videoURL: video,
         cost: 'paid',
-        description: productDescription
-      })
+        description: productDescription,
+      }),
     );
     resetValues();
     toast.success('New product added!');
@@ -82,6 +80,8 @@ export const AddNewProduct = () => {
       toast.error('All fields must be completed!');
     }
   };
+
+  if (!isUserLoggedIn || isRegular) return <Navigate to='/' />;
 
   return (
     <Flex

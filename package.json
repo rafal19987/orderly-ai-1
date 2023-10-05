@@ -1,7 +1,15 @@
 {
+  "authors": [
+    "Jakub Adamski",
+    "Anna Idźkowska",
+    "Rafał Izdebski",
+    "Mateusz Pietruczuk"
+  ],
   "name": "orderlyai",
+  "description": "OrderlyAI is a web application designed to simplify tracking trends in the ever-evolving field of artificial intelligence. As the AI landscape rapidly expands, keeping up with these changes can be time-consuming and challenging. Our app categorizes AI tools into sections such as writing, productivity, video generation, image generation, chatbots, and marketing.",
+  "version": "1.0.0",
+  "homepage": "https://comfy-chebakia-871da9.netlify.app/",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -31,12 +39,14 @@
     "react-router": "^6.15.0",
     "react-router-dom": "^6.16.0",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
