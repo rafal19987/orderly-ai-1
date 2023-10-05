@@ -5,6 +5,9 @@ const spinAnimation = keyframes({
   from: { transform: 'rotate(0deg)' },
   to: { transform: 'rotate(360deg)' },
 });
+
+const GPT_API_KEY = import.meta.env.VITE_CHAT_GPT_API;
+
 export const LoadingSpinner = () => {
   return (
     <Flex
@@ -14,13 +17,22 @@ export const LoadingSpinner = () => {
       direction='column'
       gap={12}
     >
-      <Image
-        src={Spinner}
-        sx={{ animation: `${spinAnimation} 2s ease infinite` }}
-      />
-      <Text fontSize={36} textAlign='center'>
-        Waiting for API Response
-      </Text>
+      {GPT_API_KEY ? (
+        <>
+          <Image
+            src={Spinner}
+            sx={{ animation: `${spinAnimation} 2s ease infinite` }}
+          />
+          <Text fontSize={36} textAlign='center'>
+            Waiting for API Response
+          </Text>
+        </>
+      ) : (
+        <Text fontSize={24} textAlign='center'>
+          The support for generating applications through ChatGPT is currently
+          unavailable due to the associated costs related to API queries.
+        </Text>
+      )}
     </Flex>
   );
 };
