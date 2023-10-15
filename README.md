@@ -1,3 +1,10 @@
+# Login
+
+For Login as a regular user:
+username: nowynowy
+password: nowynowy
+
+
 # ABOUT application
 The main assumption of the OrderlyAI web application is to follow trends in the developing AI sector. The number of products based on artificial intelligence is growing day by day, and tracking changing trends is very persistent and time-consuming. The tools in question can be divided into categories in which they offer services.
 
