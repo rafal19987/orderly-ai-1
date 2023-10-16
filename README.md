@@ -32,9 +32,9 @@ Product
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/2bd6a8d1-cf88-421c-9b86-9e3b389dc80c)
 
 Login and Signup form
-
-
-
+![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/db13e190-33af-4c20-af58-3255bc8cc165)
+<br/>
+![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/5fe40aaa-8174-4918-b4f1-5984400edabf)
 
 We can navigate through the application using breadcrumbs
 <br />
@@ -66,7 +66,6 @@ He also gain access to the admin panel through a toggle in the extra menu
 <br/>
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/e57608ee-7ef5-4bf8-8805-25bab2b6eb85)
 
-
 He can add new categories
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/04bb2bb4-e392-40e1-9fda-ec286cee0fb3)
 
@@ -85,8 +84,10 @@ From the admin panel, you can also manage all the application users, change thei
 
 
 ## Available for all logged-in users
-If we are logged into the application and remain inactive for 5 minutes, the session will expire, and the system will automatically log us out. Inactive means we will not triger any action on redux store.
+If we are logged into the application and remain inactive for 5 minutes, the session will expire, and the system will automatically log us out. We will get notification 10sec before. Inactive means we will not triger any action on redux store.
 
 
 ## Available for all users but currently not functioning
 We have the capability to generate the entire application using the OpenAI API by making a request to chatGPT. It will provide the output in JSON format with randomly generated categories and products, replacing our data with its generated content. However, this feature is currently disabled due to the high cost of API queries to OpenAI
+![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/d64e5e0b-39cc-48f8-a9ce-7edffd0cb531)
+
