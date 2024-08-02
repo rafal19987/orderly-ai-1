@@ -31,25 +31,22 @@ npm start
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/1829556a-4a75-488b-84f3-bdcbc1f9ce19)
 
 - Products list
-<br />
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/add9ec9e-606e-4cae-98b6-6a7b34055262)
 
 - Product
-<br />
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/2bd6a8d1-cf88-421c-9b86-9e3b389dc80c)
 
 - Login and Signup form
-<br />
+
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/db13e190-33af-4c20-af58-3255bc8cc165)
-<br/>
-![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/5fe40aaa-8174-4918-b4f1-5984400edabf)
+
+![image](https://github.com/user-attachments/assets/8b7cd3a4-37ec-4c28-ad5c-4882fc7f83e7)
 
 - We can navigate through the application using breadcrumbs
-<br />
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/548a27e8-0a6d-4126-a007-deae74553991)
 
 ## Logged as regular User
-Logged-in users gain additional functionalities, such as the ability to modify category names
+- Logged-in users gain additional functionalities, such as the ability to modify category names
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/d547e3fc-4eb1-49dc-8e7a-fc6e2e16509e)
 
 - We can export all the available categories and products as a JSON file
@@ -57,10 +54,10 @@ Logged-in users gain additional functionalities, such as the ability to modify c
 
 - Once we have the exported file, or another file in the correct format, we can import it into the application to add new categories and display associated products
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/c5650ba3-e68d-42ba-bff0-526e6ccf5ae7)
+
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/ee2945be-f321-4b73-9c92-1b81e4735d13)
 
 - We can also log out from our account
-<br/>
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/57da8c21-1f37-44bc-972b-06e24762ff94)
 
 ## Logged as admin
@@ -69,9 +66,8 @@ A logged-in admin has additional functionalities, such as the ability to delete 
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/12edf8a0-1942-4b8f-b8e5-e3035bf1d9f0)
 
 - He also gain access to the admin panel through a toggle in the extra menu
-<br/>
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/87ce9c4c-61c3-4b18-90a3-b70aaa8e0648)
-<br/>
+
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/e57608ee-7ef5-4bf8-8805-25bab2b6eb85)
 
 - He can add new categories
@@ -84,12 +80,10 @@ A logged-in admin has additional functionalities, such as the ability to delete 
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/f8ea291e-70fa-47c4-94b0-69bf08b5acf0)
 
 - From the admin panel, you can also manage all the application users, change their roles, or permanently delete them
-<br />
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/00a39303-92e0-4bb1-b663-a8dd0239c282)
 
 ## Available for all logged-in users
 If we are logged into the application and remain inactive for 5 minutes, the session will expire, and the system will automatically log us out. We will get notification 10sec before. Inactive means we will not triger any action on redux store.
-<br/>
 ![image](https://github.com/rafal19987/orderly-ai-1/assets/6312438/d4bf6aa7-8121-407f-a67a-8b958fdf8c3c)
 
 ## Available for all users but currently not functioning
